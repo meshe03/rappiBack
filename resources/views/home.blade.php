@@ -19,7 +19,7 @@
             <div class="navbar navbar-default navbar-fixed-top">
                 <div class="container">
                   <div class="navbar-header">
-                      <a href="/rappiFront" class="navbar-brand">Rappi Backend</a>
+                      <a href="/" class="navbar-brand">Rappi Backend</a>
                   </div>
                   <div class="navbar-collapse collapse" id="navbar-main">
                     <ul class="nav navbar-nav navbar-right">
@@ -31,7 +31,7 @@
             
             <div class="container main-container">
                 <div class="row">
-                    <form id="form-archivo" action="leer_archivo" method="post" role="form" enctype="multipart/form-data">
+                    <form id="form-archivo" action="home" method="post" role="form" enctype="multipart/form-data">
                         <?= csrf_field() ?>
                         <div class="col-xs-12 col-md-6 col-md-offset-3">
                             <div class="form-group">
@@ -46,9 +46,23 @@
                         </div>
                     </form>
                 </div>
+                <div class="row">
+                    <div class="col-xs-12 col-md-6 col-md-offset-3">
+                        <?php if(isset($respuesta)){ ?>
+                            <h4>Respuesta:</h4>
+                            <div class="respuesta-content">
+                                <?php foreach ($respuesta as $operacion) { ?>
+                                    <?php foreach ($operacion as $value) { ?>
+                                        <strong><?=$value?></strong><br>
+                                   <?php } ?>
+                                <?php } ?>                    
+                            </div>
+                        <?php } ?> 
+                    </div>
+                </div>
             </div>
             
+            <!-- Scripts -->
             <script type="text/javascript" src="js/vendor/bootstrap.min.js"></script>
-
 	</body>
 </html>

@@ -1,3 +1,11 @@
 .main-container{
     margin-top: 80px;
 }
+
+.respuesta-content{
+    border: 2px #dce4ec solid;
+    padding: 12px;
+    border-radius: 4px;
+    height: 300px;
+    overflow-y: scroll;
+}

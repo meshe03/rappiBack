@@ -86,12 +86,15 @@ class CubeController extends Controller{
     }
 
 
-    public function postLeerArchivo(Request $request){
+    public function postHome(Request $request){
         $respuesta = [];
         
         try{
             if(!$request->hasFile('entrada')){
-                return json_encode(['status' => 0, 'respuesta' => $respuesta, 'mensaje' => "No se pudo encontrar el archivo"]);
+               return view('home', [
+                        'status' => 0, 
+                        'respuesta' => $respuesta ,
+                        'mensaje' => "No se pudo encontrar el archivo"]);
             }
             
             $entrada=$request->file('entrada');
@@ -111,7 +114,11 @@ class CubeController extends Controller{
                 $respuesta[] = $this->realizarOperaciones($n, $m, $data);
             }
             
-            return json_encode(['status' => 1, 'respuesta' => $respuesta]);
+             return view('home', [
+                        'status' => 1, 
+                        'respuesta' => $respuesta ,
+                        'mensaje' => ""]);
+            //return json_encode(['status' => 1, 'respuesta' => $respuesta]);
 
         }catch(\Exception $e){
             $mensaje = "Ha ocurrido un error. Verifique qla correcta estructura del archivo";
@@ -119,7 +126,12 @@ class CubeController extends Controller{
             if ($e instanceof CustomException) {
                 $mensaje = $e->getMessage();
             }
-            return json_encode(['status' => -1, 'respuesta' => $respuesta, 'mensaje' => $mensaje]);
+            
+            return view('home', [
+                        'status' => -1, 
+                        'respuesta' => $respuesta ,
+                        'mensaje' => ""]);
+            //return json_encode(['status' => -1, 'respuesta' => $respuesta, 'mensaje' => $mensaje]);
         } 
     }
 

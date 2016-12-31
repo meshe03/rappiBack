@@ -12,4 +12,4 @@
 */
 
 Route::get('/', 'CubeController@home');
-Route::post('leer_archivo', 'CubeController@postLeerArchivo');
+Route::post('home', 'CubeController@postHome');
