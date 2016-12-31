@@ -12,4 +12,5 @@
 */
 
 Route::get('/', 'CubeController@home');
+Route::get('/home', 'CubeController@home');
 Route::post('home', 'CubeController@postHome');

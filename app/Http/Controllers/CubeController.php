@@ -25,7 +25,6 @@ class CubeController extends Controller{
     }
     
     public function realizarOperaciones($n, $m, &$data){
-
         if($n > 100 || $n < 0){ //Validacion rango N
             throw new CustomException("Error", "Valor inválido de N");
         }
@@ -118,10 +117,9 @@ class CubeController extends Controller{
                         'status' => 1, 
                         'respuesta' => $respuesta ,
                         'mensaje' => ""]);
-            //return json_encode(['status' => 1, 'respuesta' => $respuesta]);
 
         }catch(\Exception $e){
-            $mensaje = "Ha ocurrido un error. Verifique qla correcta estructura del archivo";
+            $mensaje = "Ha ocurrido un error. Verifique la correcta estructura del archivo";
             
             if ($e instanceof CustomException) {
                 $mensaje = $e->getMessage();
@@ -130,8 +128,7 @@ class CubeController extends Controller{
             return view('home', [
                         'status' => -1, 
                         'respuesta' => $respuesta ,
-                        'mensaje' => ""]);
-            //return json_encode(['status' => -1, 'respuesta' => $respuesta, 'mensaje' => $mensaje]);
+                        'mensaje' => $mensaje]);
         } 
     }
 

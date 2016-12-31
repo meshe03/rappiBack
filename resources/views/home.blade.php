@@ -19,7 +19,7 @@
             <div class="navbar navbar-default navbar-fixed-top">
                 <div class="container">
                   <div class="navbar-header">
-                      <a href="/" class="navbar-brand">Rappi Backend</a>
+                      <a href="#" class="navbar-brand">Rappi Backend</a>
                   </div>
                   <div class="navbar-collapse collapse" id="navbar-main">
                     <ul class="nav navbar-nav navbar-right">
@@ -48,16 +48,20 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-12 col-md-6 col-md-offset-3">
-                        <?php if(isset($respuesta)){ ?>
-                            <h4>Respuesta:</h4>
-                            <div class="respuesta-content">
-                                <?php foreach ($respuesta as $operacion) { ?>
-                                    <?php foreach ($operacion as $value) { ?>
-                                        <strong><?=$value?></strong><br>
-                                   <?php } ?>
-                                <?php } ?>                    
-                            </div>
-                        <?php } ?> 
+                        <h4>Respuesta:</h4>
+                        <div class="respuesta-content">
+                            <?php if(isset($status)){?>
+                                <?php if($status == 1){ ?>
+                                    <?php foreach ($respuesta as $operacion) { ?>
+                                        <?php foreach ($operacion as $value) { ?>
+                                            <strong><?=$value?></strong><br>
+                                       <?php } ?>
+                                    <?php } ?>                    
+                                <?php }else{?>
+                                   <strong><?=$mensaje?></strong>
+                                <?php }?>
+                            <?php }?>
+                        </div>
                     </div>
                 </div>
             </div>
