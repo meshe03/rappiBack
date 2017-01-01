@@ -32,7 +32,7 @@ class CubeController extends Controller{
                       'mensaje' => $mensaje]);
 
         }catch(\Exception $e){
-            $mensaje = "Ha ocurrido un error. Verifique la correcta estructura del archivo";
+            $mensaje = "Ha ocurrido un error. Verifique la correcta estructura del archivo y la extensión";
             
             if ($e instanceof CustomException) {
                 $mensaje = $e->getMessage();
