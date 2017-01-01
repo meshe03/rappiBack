@@ -23,25 +23,25 @@ class Data{
        return trim(preg_replace('/\s\s+/', ' ', $linea));
     }
     
-    public function leerLinea(){
+    public function leerLinea(){//Retorna la linea actual
         $linea = $this->limpiarLinea(reset($this->data));
         array_shift($this->data);
         return $linea;
     }
     
-    public function realizarOperaciones($n, $m){
+    public function realizarOperaciones($t, $n, $m){
         if($n > 100 || $n < 0){ //Validacion rango N
-            throw new CustomException("Error", "Valor inválido de N");
+            throw new CustomException("Error", "Valor inválido de N - Caso de prueba ".$t);
         }
         
         if($m > 1000 || $n < 0){ //Validacion rango M
-            throw new CustomException("Error", "Valor inválido de M");
+            throw new CustomException("Valor inválido de M - Caso de prueba ".$t);
         }
         
-        $matrix = new Matrix($n);
+        $matrix = new Matrix($n); //Contrucción de la matriz
         $respuesta = [];
 
-        for($k = 1; $k <= $m; $k++){
+        for($k = 1; $k <= $m; $k++){ //Operaciones sobre la matriz
             $operacion = explode(" ", $this->leerLinea());
             $tipoOperacion = $operacion[0];
 
@@ -50,15 +50,15 @@ class Data{
                 $y = (int)$operacion[2];
                 $z = (int)$operacion[3];
                 $w = (int)$operacion[4];
-                
+
                 //Validaciones entrada UPDATE
                 if( 
-                    ($x>$n || $x<0) || 
-                    ($y>$n || $y<0) || 
-                    ($z>$n || $z<0) ||
+                    ($x>$n || $x<1) || 
+                    ($y>$n || $y<1) || 
+                    ($z>$n || $z<1) ||
                     ($w > pow(10, 9) || $w < pow(10, -9))){
                     
-                    throw new CustomException("Error", "Valores inválidos en funcion UPDATE");
+                    throw new CustomException("Error", "Valores inválidos en funcion UPDATE - Caso de prueba ". $t. ", operación  ". $k);
                 }
    
                 $matrix->updateMatrix($x, $y, $z, $w);
@@ -81,8 +81,10 @@ class Data{
                      $respuesta[] = $matrix->queryMatrix($x1, $y1, $z1, $x2, $y2, $z2);
                     
                 }else{
-                    throw new CustomException("Error", "Valores inválidos en funcion QUERY");
+                    throw new CustomException("Error", "Valores inválidos en funcion QUERY  - Caso de prueba ". $t. ", operación  ". $k);
                 }
+            }else{ //Nombre de operacion no válido o valor de M no coincide con cantidad de operaciones
+                 throw new CustomException("Error", "Operación inválida  - Caso de prueba ". $t. ", operación  ". $k);
             }
         }
         return $respuesta;    
@@ -100,7 +102,7 @@ class Data{
             $n = $dataMatrix[0];
             $m = $dataMatrix[1];
 
-            $respuesta[] = $this->realizarOperaciones($n, $m);
+            $respuesta[] = $this->realizarOperaciones($t, $n, $m);
         }
             
         return $respuesta;

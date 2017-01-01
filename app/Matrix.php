@@ -10,9 +10,9 @@ class Matrix{
     }
 
     private function construirMatrix($n){
-        for ($i = 0; $i <= $n; $i++) {
-            for ($j = 0; $j <= $n; $j++) {
-                for ($k = 0; $k <= $n; $k++) {
+        for ($i = 1; $i <= $n; $i++) {
+            for ($j = 1; $j <= $n; $j++) {
+                for ($k = 1; $k <= $n; $k++) {
                     $this->matrix[$i][$j][$k] = 0;
                 }
             }

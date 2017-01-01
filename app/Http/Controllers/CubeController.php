@@ -16,6 +16,7 @@ class CubeController extends Controller{
         $respuesta = [];
         $status = 0;
         $mensaje = "No se pudo encontrar el archivo";
+        
         try{
             if($request->hasFile('entrada')){
                 $data = new Data();
